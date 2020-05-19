@@ -18,7 +18,7 @@ import UIKit
 import Foundation
 import Photos
 
-@objc(RNPalette)
+@objc(ColorLens)
 public class ColorLens:NSObject {
 
     public static let defaultQuality = 10
@@ -31,9 +31,9 @@ public class ColorLens:NSObject {
 
     @objc
     public func getPaletteFromImage(_ path: String, callback: RCTResponseSenderBlock) -> Void {
-        let image:UIImage = RNPalette.findImage(path: path)
+        let image:UIImage = ColorLens.findImage(path: path)
 
-        let palette:[Color] = RNPalette.getPalette(from: image, colorCount: 10)!
+        let palette:[Color] = ColorLens.getPalette(from: image, colorCount: 10)!
 
         var swatches = Array<Dictionary<String,UInt8>>();
         for color in palette {
