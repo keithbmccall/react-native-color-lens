@@ -4,7 +4,7 @@ A React-Native util for extracting the dominant colors from an image. Uses Color
 
 ## Getting started
 
-`$ npm install react-native-color-lens --save`
+`npm install react-native-color-lens --save`
 
 or
 
