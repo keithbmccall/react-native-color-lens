@@ -1,6 +1,6 @@
 {
   "name": "react-native-color-lens",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A react native util to extract dominant colors from an image",
   "main": "index.js",
   "scripts": {
@@ -21,10 +21,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/keithmccall/react-native-color-lens.git",
-    "baseUrl": "https://github.com/keithmccall/react-native-color-lens"
+    "url": "git+https://github.com/keithbmccall/react-native-color-lens.git",
+    "baseUrl": "https://github.com/keithbmccall/react-native-color-lens"
   },
-  "homepage": "https://github.com/keithmccall/react-native-color-lens#readme",
+  "homepage": "https://github.com/keithbmccall/react-native-color-lens#readme",
   "author": {
     "name": "Keith McCall",
     "email": "keithcodes@gmail.com"
