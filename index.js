@@ -16,13 +16,11 @@ export const getPalette = (path, callback) => {
   });
 };
 
-export const getPixel = async (path, options) => {
-  return await _getPixel(path, options, (err, color) => {
-    if (err) {
-      console.log("error in getPixel with arguments ", { path, options });
-      return "#000000";
-    }
+export const getPixel = (path, options) =>
+  new Promise((resolve, reject) => {
+    _getPixel(path, options, (err, color) => {
+      if (err) return reject(err);
 
-    return color;
+      resolve(color);
+    });
   });
-};
