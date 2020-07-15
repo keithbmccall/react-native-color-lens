@@ -1,11 +1,12 @@
 import { NativeModules } from "react-native";
+import { getClosestColor } from "./src";
 
 const {
   ColorLens: { getPaletteFromImage },
   Pixel: { getPixel: _getPixel }
 } = NativeModules;
 
-export const getPalette = (path, callback) => {
+const getPalette = (path, callback) => {
   const localIdentifier = path.substring(5);
   getPaletteFromImage(localIdentifier, (err, res) => {
     if (err) {
@@ -16,7 +17,7 @@ export const getPalette = (path, callback) => {
   });
 };
 
-export const getPixel = (path, options) =>
+const getPixel = (path, options) =>
   new Promise((resolve, reject) => {
     _getPixel(path, options, (err, color) => {
       if (err) return reject(err);
@@ -24,3 +25,5 @@ export const getPixel = (path, options) =>
       resolve(color);
     });
   });
+
+export { getPixel, getPalette, getClosestColor };
