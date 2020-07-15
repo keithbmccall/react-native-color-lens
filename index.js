@@ -1,10 +1,35 @@
+import hexRgb from "hex-rgb";
+import rgbHex from "rgb-hex";
+import diff from "color-diff";
+import { pantones } from "./pantones.json";
 import { NativeModules } from "react-native";
-import { getClosestColor } from "./src";
 
 const {
   ColorLens: { getPaletteFromImage },
   Pixel: { getPixel: _getPixel }
 } = NativeModules;
+
+const getRGB = hexColor => {
+  const rgbcolor = hexRgb(hexColor);
+  return {
+    R: rgbcolor[0],
+    G: rgbcolor[1],
+    B: rgbcolor[2]
+  };
+};
+
+const pantoneRGBList = pantones.map(color => getRGB(color.hex));
+
+const getRGBFromHex = ({ red, green, blue }) => rgbHex(red, green, blue);
+
+const getPantone = inputHex => {
+  const inputRGB = getRGB(inputHex);
+  const nearestPantone = diff.closest(inputRGB, pantoneRGBList);
+  const nearestPantoneHex = rgbHex(nearestPantone.R, nearestPantone.G, nearestPantone.B);
+  const indexInPantonesList = pantones.findIndex(x => x.hex == `#${nearestPantoneHex}`);
+
+  return { ...pantones[indexInPantonesList], rgb: inputRGB, hex: inputHex };
+};
 
 const getPalette = (path, callback) => {
   const localIdentifier = path.substring(5);
@@ -26,4 +51,4 @@ const getPixel = (path, options) =>
     });
   });
 
-export { getPixel, getPalette, getClosestColor };
+export { getPixel, getPalette, getPantone, getRGBFromHex };

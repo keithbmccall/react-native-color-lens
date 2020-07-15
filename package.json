@@ -1,6 +1,6 @@
 {
   "name": "react-native-color-lens",
-  "version": "2.1.2",
+  "version": "2.2.2",
   "description": "A react native util to extract dominant colors from an image",
   "main": "index.js",
   "scripts": {
@@ -38,5 +38,8 @@
     "color-diff": "^1.1.0",
     "hex-rgb": "^1.0.0",
     "rgb-hex": "^2.1.0"
+  },
+  "peerDependencies": {
+    "react-native": ">=0.62.0"
   }
 }
