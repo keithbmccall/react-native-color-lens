@@ -20,13 +20,13 @@ const getRGB = hexColor => {
 
 const pantoneRGBList = pantones.map(color => getRGB(color.hex));
 
-const getRGBFromHex = ({ red, green, blue }) => rgbHex(red, green, blue);
+const getHexFromRGB = ({ red, green, blue }) => `${rgbHex(red, green, blue)}`;
 
 const getPantone = inputHex => {
   const inputRGB = getRGB(inputHex);
-  const nearestPantone = diff.closest(inputRGB, pantoneRGBList);
-  const nearestPantoneHex = rgbHex(nearestPantone.R, nearestPantone.G, nearestPantone.B);
-  const indexInPantonesList = pantones.findIndex(x => x.hex == `#${nearestPantoneHex}`);
+  const { R: red, G: green, B: blue } = diff.closest(inputRGB, pantoneRGBList);
+  const nearestPantoneHex = getHexFromRGB({ red, green, blue });
+  const indexInPantonesList = pantones.findIndex(x => x.hex == nearestPantoneHex);
 
   return { ...pantones[indexInPantonesList], rgb: inputRGB, hex: inputHex };
 };
@@ -51,4 +51,4 @@ const getPixel = (path, options) =>
     });
   });
 
-export { getPixel, getPalette, getPantone, getRGBFromHex };
+export { getPixel, getPalette, getPantone, getHexFromRGB };
