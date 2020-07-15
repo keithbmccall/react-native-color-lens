@@ -20,7 +20,7 @@ const getRGB = hexColor => {
 
 const pantoneRGBList = pantones.map(color => getRGB(color.hex));
 
-const getHexFromRGB = ({ red, green, blue }) => `${rgbHex(red, green, blue)}`;
+const getHexFromRGB = ({ red, green, blue }) => `#${rgbHex(red, green, blue)}`;
 
 const getPantone = inputHex => {
   const inputRGB = getRGB(inputHex);
